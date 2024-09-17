@@ -7,6 +7,7 @@ Repositorio destinado a la asignatura de Desarrollo Web de Entorno Cliente
 
 - [Ejercicios realizados en clase](/JavaScript/Pruebas%20de%20clase/)
 - [Tareas realizadas para la asignatura](/JavaScript/Ejercicios/)
+- [Proyectos realizados en la asignatura](/JavaScript/Proyectos/)
 
 
 <p align="center"><img src="/img/imagen.webp"></img></p>
