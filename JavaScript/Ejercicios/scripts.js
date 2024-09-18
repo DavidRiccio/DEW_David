@@ -1,5 +1,5 @@
 /* Ejercicio 1 */
-
+/* 
 function prueba(){
     let a = document.getElementById("1").value;
     let b = document.getElementById("2").value;
@@ -14,10 +14,10 @@ function prueba(){
     else if ((a + b + c)>10 && a != b && b != c && c != a){
         console.error("Error el numero es mayor de 10 y los numeros son diferentes")
     }
-}
+} */
 
 /* Ejercicio 2 */
-function prueba2(){
+ function prueba2(){
     let a = document.getElementById("4").value;
     if (a === 0){
         console.log("‘Este es muy fácil… ¡prueba otro!")
@@ -34,10 +34,10 @@ function prueba2(){
 
 /* Ejercicio 3 */
 function prueba3(){
- for(let i = 0, j = 20; i > 8 || j<0;i++,j - 3){
-    console.log(i,j);
+ for (i = 0, j = 20; i > 8, j < 0 ;i++, j = j - 3){
+    console.log(i, j);
  }
-}
+} 
 
 /* Ejercicio 4 */
 /* let result = 1, arg1, arg2, res1, res2;
@@ -58,8 +58,43 @@ while (result > 0) {
 
 /* Ejercicio 5 */
 
-const today = new Date("2024-09-15")
+/* const today = new Date("2024-09-15")
 const day = today.getDate();
 const year = today.getFullYear() ;
 const month = today.getMonth() + 1;
-console.log(`${day}/${month}/${year}`)
+console.log(`${day}/${month}/${year}`) */
+
+
+
+/* Ejercicio 6 */
+/* 
+let fecha1 = new Date ("02/04/2015");
+console.log(fecha1);
+
+let fecha2= new Date("2015-04-02");
+console.log(fecha2);
+
+let fecha3 = new Date("April 02,2015");
+console.log(fecha3); */
+
+/* Ejercicio 7 */
+
+function passtime(birth){
+    let date1 = new Date(birth);
+    let now = new Date(); 
+    let duff = now - date1;
+    /* console.log(duff); */
+    console.log(date1);
+    console.log(now);
+    console.log(duff)
+    let years = duff / 31536000
+    let month = duff % 31536000 / 12
+    let days = (duff % 31536000 / 12) / 30 
+    let hours = (duff % 31536000 / 12) / 30
+    /* let minutes = duff % 1000 / 60; */
+    console.log(years);
+    console.log(month)
+    console.log(days)
+}
+
+passtime('2024-09-16')

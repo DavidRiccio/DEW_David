@@ -71,7 +71,7 @@ function initCanvas(){
         this.render = function(){
             if (this.direcccion === "left"){
                 this.x -=5;
-            } else if (this.direcccion === "right"){
+            } else if (this.direcccion === "right"){A<<<arguments
                 this.x +=5;
                 
             }else if (this.direcccion === "downArrow"){
