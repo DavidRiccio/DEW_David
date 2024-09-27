@@ -83,21 +83,74 @@ Elemento 3: 10 años
 Elemento 4: diesel
 Elemento 5: 5 puertas*/
 
+function csv(){
+    let texto = document.getElementById("ej6-1").value;
+    let delimitador = document.getElementById("ej6-2").value;
+    let textArray = texto.split(delimitador)
+    let numElements = textArray.length
+    let result = `Hay ${numElements} Elementos, 
+    Elemento 1 : ${textArray[0]}
+    Elemento 2 : ${textArray[1]}
+    Elemento 3 : ${textArray[2]}
+    Elemento 4 : ${textArray[3]}
+    Elemento 5 : ${textArray[4]}
+    `
+    document.getElementById("resultado-ej6").textContent = result;
+}
+
 
 /* 7- Realizar una función que dado un texto, lo convierta a minúscula y elimine los espacios iniciales y finales, y devuelva la suma de los siguientes puntos:
 +1 si el texto empieza por "el" o por "la"
 +10 si el texto finaliza en gerundio ("ando", "endo")
 +100 si el texto contiene al menos una vez la preposición "con" directamente entre otras dos palabras. */
 
+function toMinus(){
+    let result = 0
+    let text = document.getElementById("ej7-1").value
+    let textLowers = text.toLowerCase().trim()
+    if (textLowers.startsWith('la')|| textLowers.startsWith('el')){
+        result+=5
+    }if (textLowers.endsWith('ando')||textLowers.endsWith('endo')){
+        result+=10
+    }if (textLowers.includes(' con ')){
+        result+=100
+    }
+    document.getElementById("resultado-ej7-1").textContent = textLowers;
+    console.log(textLowers)
+    document.getElementById("resultado-ej7-2").textContent = result;
+    console.log(result)
+
+}
+
 
 /* 8-Escribir una función que busque la cadena "arriba" en un texto. La función deberá informar si encuentra o no esta cadena en el texto y, si la encuentra, nos deberá mostrar el texto reemplazando "arriba" por "abajo". */
+    function replaceUp(){
+        let text = document.getElementById("ej8-1").value;
+        let result = ''
+        let result2= ''
+        let textReplaced = text.replaceAll('arriba','abajo');
+        if (text.includes('arriba')){
+            result = 'La palabra incluye arriba';
+            result2 = textReplaced
+        }
+        else{
+            result = 'No está la palabra arriba en el texto'
+            result2=''
+            
+        }
 
+        document.getElementById('resultado-ej8-1').textContent = result
+        document.getElementById('resultado-ej8-2').textContent = result2
+
+    }
 
 /* 9-Implementar una función que dado un texto, nos indique si todas las letras son minúsculas o mayúsculas, o una combinación de ambas. */
 
 function mayus(){
-    let text = document.getElementById("ej9-1")
+    let text = document.getElementById("ej9-1").value;
     let result = ''
+    let text2 = text.toUpperCase();
+    console.log(text2)
     if (text == text.toUpperCase()){
         result = 'Todas son mayusculas'
     }else if(text == text.toLowerCase()){
@@ -113,8 +166,8 @@ function mayus(){
 
 
 function palindrome(){
-    let text = String(document.getElementById("ej10-1").value)
-    let textLetters = text.split('').toLowerCase()
+    let text = String(document.getElementById("ej10-1").value).toLowerCase()
+    let textLetters = text.split('')
     let result = ''
     if (textLetters == textLetters.reverse()){
         result = 'Es un palindromo'

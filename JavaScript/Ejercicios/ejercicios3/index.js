@@ -24,6 +24,8 @@
         array.sort((a, b) => a - b);
         return array; 
     }
+
+    /*3*/
     
     function randomSort(){
         let array = sortArrayRandom(20, 20, 100);
