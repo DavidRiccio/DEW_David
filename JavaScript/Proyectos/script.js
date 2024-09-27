@@ -52,6 +52,7 @@ function initCanvas(){
             launcher.hitDetectLowerLevel(enemyList[i]);
         }
     };
+    launcher.hitDetectLowerLevel(enemyList[i]);
 
     function.Launcher(){
         (this.y = 500),
