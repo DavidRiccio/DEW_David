@@ -8,7 +8,8 @@
             max = Math.floor(max);
             array.push(Math.floor(Math.random() * (max - min) + min));
         }
-        console.log(array)
+        console.log(array);
+        return array
     }
 
  /*    2) Usando la función del ejercicio 1, generar un array aleatorio de 20 elementos entre 20 y 100 y 
@@ -22,7 +23,7 @@
             array.push(Math.floor(Math.random() * (max - min) + min));
         }
         array.sort((a, b) => a - b);
-        console.log(array); 
+        console.log(array);; 
     }
 
     /*3) Crear una función que mezcle los elementos de un array en orden aleatorio. Probar con el array 
@@ -47,6 +48,33 @@ Mostrar un mensaje de texto para cada número indicando el valor de x, la operac
 realizar la operación */
 
 
+function ej4(){
+    let array = arrayRandom(15,-10,20)
+    for( x of array){
+        if (x <= -5){
+            let array2 = [...array]
+            array2.shift()
+            console.log(`X vale ${x}, elimina el primer elemento`)
+        }
+        else if (-5 < x <= 0){
+            let array2 = [...array]
+            array2.pop()
+            console.log(`X vale ${x}, elimina el ultimo elemento`)
+        }
+        else if (0 < x <=  10){
+            let array2 = [...array]
+            array2.unshift(x)
+            console.log(`X vale ${x}, añade al primer indice`)
+        }
+        else if (10 < x <=  10){
+            let array2 = [...array]
+            array2.push(x)
+            console.log(`X vale ${x}, añade en el  ultimo indice`)
+        }
+    }
+}
+
+ej4()
 
 
 
@@ -58,11 +86,13 @@ elemento. Probar con un array aleatorio de 20 números entre 60 y 100.  */
 
 function arraySquareRoot(){
     let array = arrayRandom(20,60,100)
-    let roots = array.map(function (num) {
-        return Math.sqrt(num);
-});
-console.log(array)
-console.log(roots)
+    let roots = []
+    for (let n of array){
+        roots.push(n **0.5)
+
+    }
+console.log(array);
+console.log(roots);
 }
 arraySquareRoot()
 
@@ -78,8 +108,16 @@ valores (si el valor se repite, informar sólo sobre la primera vez que aparezca
 aleatorio de 20 números entre -100 y 100.*/
 
 
-
-
+function maxMin(){
+    let array = arrayRandom(20,-100,100)
+    let min = Math.min(...array);
+    let max = Math.max(...array)
+    let minIndex = array.indexOf(min)
+    let maxIndex = array.indexOf(max)
+    
+    console.log(min,max,minIndex,maxIndex,array)
+}
+maxMin()
 
 
 
@@ -89,7 +127,21 @@ aleatorio de 20 números entre -100 y 100.*/
 /* 7) Crear un array de 50 números aleatorios enteros aleatorios entre 10 y 20. Para cada elemento, 
 informar si es la primera vez que aparece, o si se trata de un elemento repetido. */
 
+function repeat(){
+    let array = arrayRandom(50,10,20)
+    let arrayUnique =[]
+    for (n of array){
+        if (arrayUnique.includes(n)){
+            console.log(`El numero ${n} ya ha salido`)
+        }else{
+            arrayUnique.push(n)
+        }
+        console.log(arrayUnique)
 
+
+    }
+}
+repeat()
 
 
 
