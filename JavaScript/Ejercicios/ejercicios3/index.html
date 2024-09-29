@@ -4,12 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div>
-       <h1> REY, TODOS LOS RESULTADOS EN CONSOLA <3</h1>
-        <input type="submit" class="rs3-1" onclick="arrayRandom()">
+    <h1>EJERCICIOS JAVASCRIPT 3</h1>
+    <p>Resultados en consola</p>
+    <div class="container">
+        <div class="ejercicio">
+            Ejercicio 1
+            <input type="submit" class="rs3-1" onclick="arrayRandom()">
+            <p>Genera un array aleatorio</p>
+        </div>
+        <div class="ejercicio">
+            Ejercicio 2
+            <input type="submit" onclick="sortArrayRandom()">
+            <p>Muestra un array aleatorio</p>
+            <p>Y luego muestra el mismo array ordenado</p>
+        </div>
+        <div class="ejercicio">
+            Ejercicio 3
+            <input type="submit" onclick="randomSort()">
+            <p>Muestra un array aleatorio</p>
+            <p>luego muestra el mismo array ordenado</p>
+            <p>Y despues desordena el array ordenado</p>
+        </div>
+        <div class="ejercicio">
+            Ejercicio 4
+            <input type="submit" onclick="ej4()">
+            <p>Recorre el array y hace estas variaciones:</p>
+            <ul>
+                <li>x <= -5: Eliminar el primer elemento del array</li>
+                <li>-5 < x <= 0: Eliminar el último elemento del array</li>
+                <li>0 < x <= 10: Añadir x al principio del array</li>
+                <li>10 < x: Añadir x al final del array</li>
+            </ul>
+        </div>
+        <div class="ejercicio">
+            Ejercicio 5
+            <input type="submit" onclick="arraySquareRoot()">
+            <p>Devuelve otro array con la raíz cuadrada de cada elemento</p>
+        </div>
+        <div class="ejercicio">
+            Ejercicio 6
+            <input type="submit" onclick="maxMin()">
+            <p>Devuelve el valor máximo y mínimo del array e indica el índice de estos</p>
+        </div>
+        <div class="ejercicio">
+            Ejercicio 7
+            <input type="submit" onclick="repeat()">
+            <p>Informar si es la primera vez que aparece o si se trata de un elemento repetido.</p>
+        </div>
+        <div class="ejercicio">
+            Ejercicio 8
+            <input type="submit" onclick="countNumbers()">
+            <p>Indica cuántas veces había aparecido con anterioridad el número.</p>
+        </div>
     </div>
+
     <script src="/JavaScript/Ejercicios/ejercicios3/index.js"></script>
 </body>
 </html>

@@ -17,9 +17,40 @@ function randomArray(){
 
 //2-Escribir una función que acepte al menos un argumento (el primer argumento debe ser obligatorio, mostrar un mensaje de error si no se indica, luego se pueden indicar tantos argumentos como desee el usuario) y que devuelva la suma y la media de todos los elementos. Comprobar que todos los argumentos sean números e ignorar los que no lo sean, mostrando un aviso (por ejemplo: ¡AVISO! El argumento número 3 "Hola" no es un número, lo ignoramos").
 
-function getAvg(){
+function getAvg() {
+    let input = document.getElementById("4").value;
+    let args = input.split(',').map(arg => arg.trim());
+    if (args.length === 0 || (args.length === 1 && args[0] === '')) {
+        document.getElementById("rs-ej2").textContent = "Debes proporcionar al menos un número.";
+        return;
+    }
+    let sum = 0;
+    let count = 0;
+    let avisos = '';
+    args.forEach((arg, index) => {
+        let num = Number(arg);
+        if (!isNaN(num)) {
+            sum += num;
+            count++;
+        } else {
+            avisos += ` El argumento numero ${index + 1} "${arg}" no es un número, lo ignoramos.\n`;
+        }
+    });
+    if (count === 0) {
+        document.getElementById("rs-ej2").textContent = "No se proporcionaron números válidos.";
+        return;
+    }
+    let avg = sum / count;
+    let result = `La suma de los números es: ${sum}\n`;
+    result += `El promedio de los números es: ${avg}\n`;
 
+    if (avisos) {
+        result += '\n' + avisos;
+    }
+    document.getElementById("rs-ej2").textContent = result;
 }
+
+
 
 
 //3-Implementar una función que dados dos números, nos escriba el resultado de la suma con console.log usando 4 formas diferentes (lista de argumentos, concatenación de strings, marcadores de posición y plantillas).
@@ -46,20 +77,35 @@ function fourSum(){
 //4-Escribir una función que dados dos números, nos devuelva la división del primero entre el segundo si el resultado es un valor númerico, y, si no, que indique dónde está el problema (resultado es infinito, el númerador o el denominador no eran números, o estaban indefinidos, etc.)
  
 
-function division(){
-    let number1 = Number(document.getElementById("ej4-1").value)
-    let number2 = Number(document.getElementById("ej4-2").value) 
-    let result = ''
-    if (isNaN(number1)|| isNaN(number2)){
-        result = 'Alguno de los argumentos no es un numero espabila'
-    }else if (number2 === 0){
-        result = 'No se puede dividir un numero por 0'
-    }
-    else{
-        result = number1 / number2
+function division() {
+    let number1 = document.getElementById("ej4-1").value;
+    let number2 = document.getElementById("ej4-2").value;
+    let result = '';
+
+
+    if (number1 === '' || number2 === '') {
+        result = 'Uno o ambos valores están indefinidos.';
+    } else {
+        number1 = Number(number1);
+        number2 = Number(number2);
+
+        if (isNaN(number1) || isNaN(number2)) {
+            result = 'Alguno de los argumentos no es un número.';
+        } else if (number2 === 0) {
+            result = 'No se puede dividir un número por 0.';
+        } else {
+            let divisionResult = number1 / number2;
+
+            if (!isFinite(divisionResult)) {
+                result = 'El resultado es infinito.';
+            } else {
+                result = `El resultado de la división es: ${divisionResult}`;
+            }
+        }
     }
     document.getElementById("resultado-ej4").textContent = result;
 }
+
 
 
 //5-Realizar una función en JS que dado un DNI (comprobar que es un número entre 0 y 99999999), devuelva la letra asociado al mismo. Esta letra se calcula como el módulo (resto) de la división del número del DNI entre 23, y a partir del resto se escoge una de las siguientes letras según la posición: TRWAGMYFPDXBNJZSQVHLCKET. Por ejemplo, para el DNI 12345678, al dividir entre 23 se obtiene comor resto 14, por lo que le corresponde la letra 'Z', siendo el DNI correcto 12345678Z.
@@ -85,18 +131,17 @@ Elemento 5: 5 puertas*/
 
 function csv(){
     let texto = document.getElementById("ej6-1").value;
-    let delimitador = document.getElementById("ej6-2").value;
-    let textArray = texto.split(delimitador)
-    let numElements = textArray.length
-    let result = `Hay ${numElements} Elementos, 
-    Elemento 1 : ${textArray[0]}
-    Elemento 2 : ${textArray[1]}
-    Elemento 3 : ${textArray[2]}
-    Elemento 4 : ${textArray[3]}
-    Elemento 5 : ${textArray[4]}
-    `
+    let delimitador = document.getElementById("ej6-2").value || ','; 
+    let textArray = texto.split(delimitador);
+    let numElements = textArray.length;
+    let result = `Hay ${numElements} elementos:\n`;
+    for (let i = 0; i < numElements; i++) {
+        result += `Elemento ${i + 1}: ${textArray[i]}\n`;
+    }
+
     document.getElementById("resultado-ej6").textContent = result;
 }
+
 
 
 /* 7- Realizar una función que dado un texto, lo convierta a minúscula y elimine los espacios iniciales y finales, y devuelva la suma de los siguientes puntos:
@@ -166,13 +211,13 @@ function mayus(){
 
 
 function palindrome(){
-    let text = String(document.getElementById("ej10-1").value).toLowerCase()
-    let textLetters = text.split('')
-    let result = ''
-    if (textLetters == textLetters.reverse()){
-        result = 'Es un palindromo'
-    }else{
-        result = 'No es un palindromo'
+    let text = String(document.getElementById("ej10-1").value).toLowerCase().replace(/[\s,]/g, '');
+    let reversedText = text.split('').reverse().join('');
+    let result = '';
+    if (text === reversedText) {
+        result = 'Es un palíndromo';
+    } else {
+        result = 'No es un palíndromo';
     }
     document.getElementById("result-ej10").textContent = result;
 }

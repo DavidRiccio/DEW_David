@@ -4,26 +4,20 @@
     function arrayRandom(num = 10, min = 100, max = 200){
         const array = [];
         for (let i = 0 ; i <= num -1; i++) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
             array.push(Math.floor(Math.random() * (max - min) + min));
         }
-        console.log(array);
+        console.log(array)
         return array
     }
 
  /*    2) Usando la función del ejercicio 1, generar un array aleatorio de 20 elementos entre 20 y 100 y 
     luego ordenarlo */
 
-    function sortArrayRandom(num = 10, min = 100, max = 200){
-        const array = [];
-        for (let i = 0 ; i < num; i++) { 
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            array.push(Math.floor(Math.random() * (max - min) + min));
-        }
+    function sortArrayRandom(){
+        array = arrayRandom(20,20,100)
         array.sort((a, b) => a - b);
-        console.log(array);; 
+        console.log(array)
+        return array; 
     }
 
     /*3) Crear una función que mezcle los elementos de un array en orden aleatorio. Probar con el array 
@@ -32,10 +26,10 @@ ordenado creado en el ejercicio anterior*/
     function randomSort(){
         let array = sortArrayRandom(20, 20, 100);
         let arrayRandom = array.sort(function() { return Math.random() - 0.5 }); 
-        console.log(arrayRandom); 
+        console.log(arrayRandom)
+        return arrayRandom; 
     }
     
-    randomSort();
 
   /*   4) Recorrer un array aleatorio generado con la función del ejercicio 1 (15 elementos entre -10 y 20) 
 y para cada elemento x, gestionar un nuevo array de la siguiente forma:
@@ -50,31 +44,30 @@ realizar la operación */
 
 function ej4(){
     let array = arrayRandom(15,-10,20)
+    let array2 = [...array]
     for( x of array){
         if (x <= -5){
-            let array2 = [...array]
             array2.shift()
             console.log(`X vale ${x}, elimina el primer elemento`)
         }
         else if (-5 < x <= 0){
-            let array2 = [...array]
             array2.pop()
             console.log(`X vale ${x}, elimina el ultimo elemento`)
         }
         else if (0 < x <=  10){
-            let array2 = [...array]
             array2.unshift(x)
             console.log(`X vale ${x}, añade al primer indice`)
         }
         else if (10 < x <=  10){
-            let array2 = [...array]
             array2.push(x)
             console.log(`X vale ${x}, añade en el  ultimo indice`)
         }
     }
+    console.log(array2)
+    return array2
+
 }
 
-ej4()
 
 
 
@@ -94,7 +87,6 @@ function arraySquareRoot(){
 console.log(array);
 console.log(roots);
 }
-arraySquareRoot()
 
 
 
@@ -115,9 +107,8 @@ function maxMin(){
     let minIndex = array.indexOf(min)
     let maxIndex = array.indexOf(max)
     
-    console.log(min,max,minIndex,maxIndex,array)
+    console.log(array,minIndex,maxIndex,min,max)
 }
-maxMin()
 
 
 
@@ -141,7 +132,6 @@ function repeat(){
 
     }
 }
-repeat()
 
 
 
@@ -152,3 +142,19 @@ repeat()
 /* 8) Modificar el ejercicio anterior para que si el número ya existía, nos indique cuántas veces había 
 aparecido con anterioridad.
      */
+
+function countNumbers(){
+    let array = arrayRandom(50, 10, 20); 
+    let occurrences = {}; 
+
+    for (let n of array) {
+        if (occurrences[n]) {
+            occurrences[n]++;
+            console.log(`El número ${n} ya ha salido ${occurrences[n] - 1} veces antes.`);
+        } else {
+            occurrences[n] = 1;
+            console.log(`El número ${n} aparece por primera vez.`);
+        }
+        console.log(`Historial de apariciones:`, occurrences);
+    }
+}

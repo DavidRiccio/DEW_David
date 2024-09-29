@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>ejercicios2</title>
 </head>
 <body>
     <div>
         Ejercicio 1 <br>
+        <p>Realizar una función que indicando un texto y un carácter (ambos obligatorios, comprobar que el segundo parámetro es realmente un único caracter), nos diga cuántas veces aparece el carácter en el texto.</p>
         <input id="2"type="text">
         <input id="3"  type="text">
         <input type="submit" onclick="randomArray()">
@@ -16,12 +18,16 @@
     <br></br>
     <div>
         Ejercicio 2 <br>
-        <input id="4" type="number">
-        <input type="submit" onclick="prueba2()">
+        <p>Escribir una función que acepte al menos un argumento (el primer argumento debe ser obligatorio, mostrar un mensaje de error si no se indica, luego se pueden indicar tantos argumentos como desee el usuario) y que devuelva la suma y la media de todos los elementos.</p>
+        <input id="4" type="text" placeholder="Introduce números separados por comas">
+        <input type="submit" onclick="getAvg()">
+        <p id="rs-ej2"></p>
     </div>
+    
     <br>
     <div>
         Ejercicio 3 <br>
+        <p>3-Implementar una función que dados dos números, nos escriba el resultado de la suma con console.log usando 4 formas diferentes </p>
         <input id="ej3-1" type="number">
         <input id="ej3-2" type="number">
         <input type="submit" onclick="fourSum()">
@@ -33,6 +39,7 @@
     </div>
     <div>
     Ejercicio 4 <br>
+    <p>Escribir una función que dados dos números, nos devuelva la división del primero entre el segundo si el resultado es un valor númerico, y, si no, que indique dónde está el problema </p>
         <input id="ej4-1" type="number">
         <input id="ej4-2" type="number">
         <input type="submit" onclick="division()">
@@ -41,12 +48,14 @@
 
      <div>
     Ejercicio 5 <br>
+    <p>Realizar una función en JS que dado un DNI  delvuelva la letra asociada</p>
         <input id="ej5-1" type="text">
         <input type="submit" onclick="dni()">
         <p id="resultado-ej5"></p>
     </div>
     <div>
         Ejercicio 6 <br>
+        <p>una función que procese una línea CSV (Comma-Separated Values). El primer parámetro es el texto (por defecto vacío) y el segundo es el separador o delimitador (por defecto una coma ",", pero el usuario podría indicar cualquier otro</p>
             <input id="ej6-1" type="text" placeholder="Texto">
             <input id="ej6-2" type="text" placeholder="Separador">
             <input type="submit" onclick="csv()">
@@ -54,6 +63,10 @@
         </div>
 
         Ejercicio 7 <br>
+        <p>Una función que dado un texto, lo convierta a minúscula y elimine los espacios iniciales y finales, y devuelva la suma de los siguientes puntos:
+            +1 si el texto empieza por "el" o por "la"
+            +10 si el texto finaliza en gerundio ("ando", "endo")
+            +100 si el texto contiene al menos una vez la preposición "con" directamente entre otras dos palabras.</p>
         <input id="ej7-1" type="text" placeholder="Texto">
         <input type="submit" onclick="toMinus()">
         <p id="resultado-ej7-1"></p>
@@ -61,6 +74,7 @@
     </div>
 
     Ejercicio 8 <br>
+        <p>Te indica si la plabra arriba esta en el texto y la remplaza por abajo</p>
         <input id="ej8-1" type="text" placeholder="Texto">
         <input type="submit" onclick="replaceUp()">
         <p id="resultado-ej8-1"></p>
@@ -69,12 +83,14 @@
    
 
     Ejercicio 9 <br>
+    <p>Dice sin son todas mayusculsculas, minusculas o mezcla</p>
         <input id="ej9-1" type="text">
         <input type="submit" onclick="mayus()">
         <p id="resultado-ej9"></p>
     </div>
 
     Ejercicio 10 <br>
+    <p>Verifica un palindromo</p>
         <input id="ej10-1" type="text">
         <input type="submit" onclick="palindrome()">
         <p id="result-ej10"></p>
