@@ -32,10 +32,11 @@ h1 {
 
 
 input[type="submit"] {
-    background-color: #3498db;
+    background-color: #530e63;
     color: white;
     border: none;
     padding: 10px;
+    margin-bottom: 10px;
     font-size: 1rem;
     border-radius: 5px;
     cursor: pointer;
