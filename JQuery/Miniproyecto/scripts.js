@@ -1,102 +1,109 @@
-$(document).ready(function() {
-    $.getJSON('/JQuery/Miniproyecto/productos.json', function(data) {
-        const bebidas = [data.Alcoholicas, data.Calientes, data.Refrescos];
+$(function () {
+    let productosSeleccionados = {};
 
-        $('#bebidas').on('click', function() {
-            $('.sub-menu').html(`
-                <button class="bebida" data-type="refrescos">Refrescos</button>
-                <button class="bebida" data-type="calientes">Calientes</button>
-                <button class="bebida" data-type="alcoholicas">Alcoholicas</button>
-            `);
-        });
+    
+    $('.menu-btn').click(function () {
+        const category = $(this).data('category');
+        cargarSubCategorias(category);
+    });
 
-        $('.primer-plato').on('click', function() {
-            $('.sub-menu').html(`
-                <button class="plato" data-type="sopa">Sopa</button>
-                <button class="plato" data-type="ensalada">Ensalada</button>
-            `);
-        });
-
-        $('.segundo').on('click', function() {
-            $('.sub-menu').html(`
-                <button class="plato" data-type="carne">Carne</button>
-                <button class="plato" data-type="pescado">Pescado</button>
-                <button class="plato" data-type="vegetariano">Vegetariano</button>
-            `);
-        });
-
-        $('.postre').on('click', function() {
-            $('.sub-menu').html(`
-                <button class="plato primer" data-type="fruta">Fruta</button>
-                <button class="plato" data-type="dulces">Dulces</button>
-            `);
-        });
+    
+    function cargarSubCategorias(category) {
+        
+        $('.sub-menu').empty();
+        $('#productos-seleccionados').empty();
+        
+        
+        const subcategorias = {
+            'bebidas': ['Calientes', 'Refrescos', 'Alcohólicas'],
+            'primer-plato': ['Sopa', 'Ensalada'],
+            'segundo-plato': ['Carne', 'Pescado', 'Vegetariano'],
+            'postres': ['Dulces', 'Frutas']
+        };
 
         
-        $('.sub-menu').on('click', '.bebida', function() {
-            const type = $(this).data('type');
-            $('.product-list').empty(); 
-            if (type === 'calientes') {
-                data.Calientes.forEach(cal => {
-                    $('.product-list').append(`<p>${cal.nombre}</p>`);
-                });
-            } else if (type === 'refrescos') {
-                data.Refrescos.forEach(ref => {
-                    $('.product-list').append(`<p>${ref.nombre}</p>`);
-                });
-            } else if (type === 'alcoholicas') {
-                data.Alcoholicas.forEach(al => {
-                    $('.product-list').append(`<p>${al.nombre}</p>`);
-                });
-            }
-        });
-        // PRIMER PLATO
-
-        $('.sub-menu').on('click', '.plato', function() {
-            const type = $(this).data('type');
-            $('.product-list').empty(); 
-            if (type === 'sopa') {
-                data.Sopa.forEach(cal => {
-                    $('.product-list').append(`<p>${cal.nombre}</p>`);
-                });
-            } else if (type === 'ensalada') {
-                data.Ensalada.forEach(ref => {
-                    $('.product-list').append(`<p>${ref.nombre}</p>`);
-                });
-            }
-        });
-        $('.sub-menu').on('click', '.plato', function() {
-            const type = $(this).data('type');
-            $('.product-list').empty(); 
-            if (type === 'carne') {
-                data.Carne.forEach(cal => {
-                    $('.product-list').append(`<p>${cal.nombre}</p>`);
-                });
-            } else if (type === 'pescado') {
-                data.Pescado.forEach(ref => {
-                    $('.product-list').append(`<p>${ref.nombre}</p>`);
-                });
-            } else if (type === 'vegetariano') {
-                data.Vegetariano.forEach(al => {
-                    $('.product-list').append(`<p>${al.nombre}</p>`);
-                });
-            }
+        subcategorias[category].forEach(subMenu => {
+            $('.sub-menu').append(`<button class="sub-menu-btn" data-subcategory="${subMenu}">${subMenu}</button>`);
         });
 
-        $('.sub-menu').on('click', '.plato', function() {
-            const type = $(this).data('type');
-            $('.product-list').empty(); 
-            if (type === 'fruta') {
-                data.Frutas.forEach(cal => {
-                    $('.product-list').append(`<p>${cal.nombre}</p>`);
-                });
-            } else if (type === 'dulces') {
-                data.Dulces.forEach(ref => {
-                    $('.product-list').append(`<p>${ref.nombre}</p>`);
-                });
-            } 
+        $('.sub-menu-btn').click(function () {
+            const subcategoria = $(this).data('subcategory');
+            cargarProductos(subcategoria);
         });
+    }
 
+    
+    function cargarProductos(subcategoria) {
+        
+        $('.product-list').empty();
 
+        $.getJSON('productos.json', function (data) {
+            const productos = data[subcategoria];
+            productos.forEach(producto => {
+                $('.product-list').append(`
+                    <div class="producto" data-id="${producto.id}">
+                    <div class="product_qty">
+                    <span>${producto.nombre}</span>
+                            <button class="btn-decrementar">-</button>
+                            <span class="cantidad">0</span>
+                            <button class="btn-incrementar">+</button>
+                        </div>
+                    </div>
+                `);
+            });
+
+            
+            $('.btn-incrementar').click(function () {
+                const cantidadSpan = $(this).siblings('.cantidad');
+                let cantidad = parseInt(cantidadSpan.text());
+                cantidad++;
+                cantidadSpan.text(cantidad);
+                actualizarProductosSeleccionados($(this).closest('.producto'), cantidad);
+            });
+
+            $('.btn-decrementar').click(function () {
+                const cantidadSpan = $(this).siblings('.cantidad');
+                let cantidad = parseInt(cantidadSpan.text());
+                if (cantidad > 0) {
+                    cantidad--;
+                    cantidadSpan.text(cantidad);
+                    actualizarProductosSeleccionados($(this).closest('.producto'), cantidad);
+                }
+            });
         });
+    }
+
+    
+    function actualizarProductosSeleccionados(productoDiv, cantidad) {
+        const productoId = productoDiv.data('id');
+        const productoNombre = productoDiv.find('span').first().text();
+
+        if (cantidad > 0) {
+            productosSeleccionados[productoId] = { nombre: productoNombre, cantidad: cantidad };
+        } else {
+            delete productosSeleccionados[productoId];
+        }
+
+        mostrarProductosSeleccionados();
+    }
+
+    
+    function mostrarProductosSeleccionados() {
+        $('#productos-seleccionados').empty();
+        $.each(productosSeleccionados, function (id, producto) {
+            $('#productos-seleccionados').append(`<li>${producto.nombre}: ${producto.cantidad}</li>`);
+        });
+    }
+
+    
+    $('#enviarComanda').click(function () {
+        if (Object.keys(productosSeleccionados).length > 0) {
+            $('#mensaje-confirmacion').fadeIn().delay(2000).fadeOut();
+            productosSeleccionados = {};
+            mostrarProductosSeleccionados();
+            $('.product-list').find('.cantidad').text(0);
+        } else {
+            alert('No hay productos seleccionados para enviar.');
+        }
     });
+});
